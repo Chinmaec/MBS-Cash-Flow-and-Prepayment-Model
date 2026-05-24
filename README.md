@@ -40,7 +40,7 @@ Interpretation:
 
 ### 2) Default
 
-Loan-level monthly default probability is modeled with logistic regression features:
+Loan-level monthly default probability is modeled with the following logistic regression features:
 
 - FICO
 - LTV
@@ -49,17 +49,13 @@ Loan-level monthly default probability is modeled with logistic regression featu
 Form:
 - `PD = sigmoid(beta0 + beta_fico*x_fico + beta_ltv*x_ltv + beta_seasoning*x_seasoning)`
 
-Why these drivers:
-- lower FICO -> weaker credit quality
-- higher LTV -> less borrower equity / higher strategic-default risk
-- seasoning captures loan aging effects
 
 ### 3) LGD (Loss Given Default)
 
 LGD is deterministic and increasing in LTV, with floor/cap bounds.
 
 Interpretation:
-- higher leverage generally means weaker collateral recovery and higher loss severity.
+- higher leverage -> weaker collateral recovery and higher loss severity
 
 ### 4) Cash Flow Engine
 
@@ -74,20 +70,7 @@ Monthly sequence per loan:
 
 Pool cash flow is the sum across all loans each month.
 
-## Repository Structure
+## Run
 
-```text
-MBS Cash Flow & Prepayment Model/
-├── data/
-│   ├── generate_loan_data.py
-│   └── loan_pool.csv
-├── models/
-│   ├── prepayment.py
-│   ├── default.py
-│   └── cashflow.py
-├── analytics/
-│   └── risk_metrics.py
-├── results/
-├── main.py
-├── README.md
-└── requirements.txt
+pip install -r requirements.txt
+python main.py
